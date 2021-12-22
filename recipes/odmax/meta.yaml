@@ -1,0 +1,67 @@
+{% set name = "odmax" %}
+{% set version = "0.1.1" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+#  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  url: https://github.com/localdevices/ODMax/archive/refs/tags/0.1.1.dev1.tar.gz
+  sha256: 79a48ad2941ffa3ae3a44587a81cdd68935c35415ff5eb1f3640dbbb828ed186
+
+build:
+  noarch: python
+  number: 0
+  entry_points:
+    - odmax = odmax.cli:main
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - python
+#    - {{ cdt('mesa-libgl-devel') }}  # [linux]
+#    - {{ cdt('mesa-dri-drivers') }}  # [linux]
+#    - {{ cdt('libselinux') }}  # [linux]
+#    - {{ cdt('libxdamage') }}  # [linux]
+#    - {{ cdt('libxxf86vm') }}  # [linux]
+#    - {{ cdt('libxext') }}     # [linux]
+  host:
+    - pip
+    - python >=3.8
+    - xorg-libxfixes  # [linux]
+  run:
+    - cartopy >=0.20.1
+    - geopandas >=0.10
+    - gpxpy
+    - matplotlib
+    - numpy
+    - opencv
+    - pandas
+    - piexif
+    - pillow
+    - python >=3.8
+    - tqdm
+test:
+  imports:
+    - odmax
+    - odmax.cli
+  requires:
+    - pip
+  commands:
+#    - pip check
+    - odmax --help
+
+about:
+  home: https://pypi.org/project/odmax/
+  license: AGPL-3
+  license_family: GPL
+  license_file: LICENSE
+  summary: 'odmax extracts still images from GoPro 360 camera types, including GNSS location and time information'
+  doc_url: https://odmax.readthedocs.io/
+  dev_url: https://github.com/localdevices/odmax/
+
+extra:
+  recipe-maintainers:
+    - hcwinsemius
+    - smathermather
