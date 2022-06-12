@@ -1,5 +1,5 @@
 {% set name = "odmax" %}
-{% set version = "0.1.1" %}
+{% set version = "0.1.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,8 +7,8 @@ package:
 
 source:
 #  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  url: https://github.com/localdevices/ODMax/archive/refs/tags/0.1.1.dev1.tar.gz
-  sha256: 79a48ad2941ffa3ae3a44587a81cdd68935c35415ff5eb1f3640dbbb828ed186
+  url: https://github.com/localdevices/ODMax/archive/refs/tags/0.1.2.tar.gz
+  sha256: 95780cff1462a8c09744e4e2c2f82ebdbca77b5facdca63843708693d92e350b
 
 build:
   noarch: python
@@ -20,12 +20,6 @@ build:
 requirements:
   build:
     - python
-#    - {{ cdt('mesa-libgl-devel') }}  # [linux]
-#    - {{ cdt('mesa-dri-drivers') }}  # [linux]
-#    - {{ cdt('libselinux') }}  # [linux]
-#    - {{ cdt('libxdamage') }}  # [linux]
-#    - {{ cdt('libxxf86vm') }}  # [linux]
-#    - {{ cdt('libxext') }}     # [linux]
   host:
     - pip
     - python >=3.8
